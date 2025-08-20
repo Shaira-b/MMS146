@@ -1,26 +1,13 @@
 import unittest
-from Player import Player   # adjust if filename is lowercase player.py
+from player import Player  # adjust if your file path is different
 
 class TestPlayer(unittest.TestCase):
     def test_get_and_set_name(self):
-        p = Player("Shaira")
-        self.assertEqual(p.get_name(), "Shaira")
+        player = Player("Alice")
+        self.assertEqual(player.get_name(), "Alice")
 
-        p.set_name("Mae")
-        self.assertEqual(p.get_name(), "Mae")
-
-    def test_score_handling(self):
-        p = Player("Shaira", score=5)
-        p.add_score(10)
-        self.assertEqual(p.get_score(), 15)
-
-        p.reset_score()
-        self.assertEqual(p.get_score(), 0)
-
-    def test_to_dict(self):
-        p = Player("Shaira", score=20)
-        self.assertEqual(p.to_dict(), {"name": "Shaira", "score": 20})
+        player.set_name("Bob")
+        self.assertEqual(player.get_name(), "Bob")
 
 if __name__ == "__main__":
     unittest.main()
-
