@@ -34,3 +34,8 @@ class Player(GameRole):
     # Polymorphism: override abstract method
     def get_role(self):
         return "Player"
+
+# --- Helper method for saving ---
+    def to_dict(self) -> dict:
+        """Return player data in dictionary format (useful for saving to file)."""
+        return {"name": self.get_name, "score": self._score}
