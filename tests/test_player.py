@@ -3,8 +3,7 @@ import os
 import unittest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from player import Player  
+from player import Player
 
 class TestPlayer(unittest.TestCase):
     def test_get_and_set_name(self):
