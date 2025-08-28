@@ -15,9 +15,15 @@ class QuizGame:
         self.question_bank = question_bank
         self.score = 0
 
-    def shuffle_question_bank(self):
+    def shuffle_question_bank(self, category=None, difficulty=None):
         '''Randomly shuffles the list of questions available for the game. Should happen automatically when the game starts.'''
-        pass
+        if category and difficulty:
+            questions = self.get_questions(category, difficulty)
+            random.shuffle(questions)
+        else:
+            for cat in self.question_bank:
+                for diff in self.question_bank[cat]:
+                    random.shuffle(self.question_bank[cat][diff])
 
     def display_question(self):
         '''
@@ -32,7 +38,8 @@ class QuizGame:
         pass
 
     def reset_game(self):
-        pass
+        self.score = 0
+        self.shuffle_question_bank()
 
 
 question1 = Question(qu = "Meow?", a = "Meow.")
@@ -41,3 +48,4 @@ question3 = Question(qu = "The", a ="Thinkerrr")
 quiz1 = QuizGame(question_bank = [question1, question2, question3])
 
 print(quiz1.display_question())
+
