@@ -42,7 +42,7 @@ class Gaming(Question):
         super().__init__(question_text, answers, correct_answer, difficulty)
         self.category = "Gaming"     # Set category to "Gaming"
 
-        question_bank = {
+question_bank = {
     "Music": {
         "Easy": [
             Music("Who sang 'Shake It Off'?",
@@ -246,4 +246,5 @@ print("Question:", sample_q.get_question_text())
 print("Choices:", sample_q.get_answers())
 print("Correct Answer:", sample_q.get_correct_answer())
 print("Category:", sample_q.get_category())
+
 print("Difficulty:", sample_q.get_difficulty())
