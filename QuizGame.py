@@ -55,9 +55,5 @@ quiz1 = QuizGame(question_bank = [question1, question2, question3])
 
 print(quiz1.display_question())
 
-# Example setup
-question_bank = {
-    "Music":{
-        "Easy
 
 
