@@ -24,7 +24,6 @@ class QuizGame:
         self.current_index = {}
         self.quiz_active = True
 
-    # Lmk if need ko to palitan or tanggalin, tysm.
     def select_category(self):  # A method for when the player chooses a category.
         """Set the current category and shuffle its questions by difficulty."""
         while True:
@@ -337,7 +336,8 @@ question_bank = {
     },
 }
 
-# Literally all you need to run the game.
+# Test case for game.
 quiz1 = QuizGame(question_bank)
 quiz1.reset_game()
+
 
