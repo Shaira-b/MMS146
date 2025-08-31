@@ -25,7 +25,7 @@ class QuizGame:
         self.quiz_active = True
 
     # Lmk if need ko to palitan or tanggalin, tysm.
-    def select_category(self, category):  # A method for when the player chooses a category.
+    def select_category(self):  # A method for when the player chooses a category.
         """Set the current category and shuffle its questions by difficulty."""
         while True:
             category = input("Please type out the category you'd like to select for this session: ")
@@ -95,6 +95,7 @@ class QuizGame:
                 self.display_question()
     
     def get_score(self):
+        '''Returns the score of the player after the game.'''
         return self.score
 
     def check_answer(self, player_input, giventext):
@@ -108,18 +109,12 @@ class QuizGame:
         print("------------------------------------------------------------------------")
         print()
 
-
     def reset_game(self):
-        self.score = 0 # Returns the score to 0.
+        '''Resets and starts the game'''
+        self.score = 0 # Resets the score to 0.
         self.current_category = None  # Removes the current category selection.
         self.current_index = {}  # Clears the tracked questions in each difficulty.
-        self.current_difficulty_index = 0 # Resets the difficulty.
-
-    def reset_game(self):
-        self.score = 0
-        self.current_category = None  # Removes the current category selection.
-        self.current_index = {}  # Clears the tracked questions in each difficulty.
-        self.current_difficulty_index = 0
+        self.current_difficulty_index = 0 # Resets the game's difficulty back to easy mode.
         print()
         print("------------------------------------------------------------------------")
         print()
@@ -209,7 +204,7 @@ question_bank = {
         ],
     },
 
-    "Film & TV": {
+    "Film and TV": {
         "Easy": [
             FilmTV("Who plays Iron Man in the Marvel Cinematic Universe?",
                    ["Robert Downey Jr.", "Chris Evans", "Chris Hemsworth"],
@@ -344,4 +339,5 @@ question_bank = {
 
 # Literally all you need to run the game.
 quiz1 = QuizGame(question_bank)
-quiz1.start_game()
+quiz1.reset_game()
+
