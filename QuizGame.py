@@ -16,13 +16,13 @@ class QuizGame:
         current_index: Tracking which question you're up to inside each difficulty of the selected category.
         quiz_active: Checks for whether or not the quiz is ongoing or not.
         '''
-        self.question_bank = question_bank
+        self.__question_bank = question_bank
         self.score = 0
         self.current_category = None
-        self.difficulties = ["Easy", "Moderate", "Hard"]
+        self.__difficulties = ["Easy", "Moderate", "Hard"]
         self.current_difficulty_index = 0
         self.current_index = {}
-        self.quiz_active = True
+        self.__quiz_active = True
 
     def select_category(self):  # A method for when the player chooses a category.
         """Set the current category and shuffle its questions by difficulty."""
@@ -32,7 +32,7 @@ class QuizGame:
                 self.current_category = category  # Saves the chosen category.
                 print("------------------------------------------------------------------------")
                 self.shuffle_question_bank(category) # Shuffles all the questions inside that category.
-                self.current_index = {difficulty: 0 for difficulty in self.question_bank[category]}  # Reset index tracking for each difficulty
+                self.current_index = {difficulty: 0 for difficulty in self.__question_bank[category]}  # Reset index tracking for each difficulty
                 break
             else: # Result if input is not part of the list.
                 print("Invalid input. Please re-enter your choice.")
@@ -40,7 +40,7 @@ class QuizGame:
     def shuffle_question_bank(self, category):
         """Shuffle only the chosen category, across all difficulties."""
         # A method that shuffles question only inside the category picked by the player.
-        for difficulty, questions in self.question_bank[category].items():
+        for difficulty, questions in self.__question_bank[category].items():
             random.shuffle(questions)
         self.display_question()
         
@@ -51,15 +51,15 @@ class QuizGame:
         From there, the difficulty will increase, and a new set of questions will be provided.
         Once a total of ten questions have been answered, the game comes to an end, and the final score is provided, along with an option to restart.
         '''
-        difficulty = self.difficulties[self.current_difficulty_index]
-        quizcontent = self.question_bank[self.current_category]
+        difficulty = self.__difficulties[self.current_difficulty_index]
+        quizcontent = self.__question_bank[self.current_category]
         questions_list = quizcontent[difficulty]
 
         if difficulty not in self.current_index:
             self.current_index[difficulty] = 0 
 
         while self.current_index[difficulty] < 4: # This ensures that a maximum of four questions within a difficulty are asked in a loop.
-            if not self.quiz_active:  # Checks if the quiz instance was deactivated by later input; if player asked to end session, ends the game.
+            if not self.__quiz_active:  # Checks if the quiz instance was deactivated by later input; if player asked to end session, ends the game.
                 return
             index = self.current_index[difficulty]
             giventext = questions_list[index]
@@ -80,7 +80,7 @@ class QuizGame:
                         return
                     elif restart == "No":
                         print("Alright, then! Thanks for playing!")
-                        self.quiz_active = False
+                        self.__quiz_active = False
                         return
                     else:
                         print("Invalid input. Please re-enter your response.")
@@ -339,5 +339,6 @@ question_bank = {
 # Test case for game.
 quiz1 = QuizGame(question_bank)
 quiz1.reset_game()
+
 
 
